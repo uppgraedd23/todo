@@ -1,79 +1,92 @@
 import React, {Component} from 'react';
-import './Calculator.css'
 
-class Calculator extends Component {
+import './Slider1.css'
 
-    constructor() {
+class Slider1 extends Component {
+
+    constructor(props) {
+        debugger;
         super();
         this.state = {
-            result: 0,
-            number1: 10,
-            number2: 7,
-            operation: '+'
+            images: props.images,
+            currentImageIndex: props.index,
+            isCycleMode: false,
+            cantGoPrev: props.index >0,
+            cantGoNext: props.index < props.index.length -1
         }
-        this.showResult = this.showResult.bind(this)
+        this.nextSlideHandler = this.nextSlideHandler.bind(this)
     }
 
-    showResult(operation, number1, number2) {
-        let result = 0;
-        switch (operation) {
-            case '+':
-                result = number1 + number2;
-                break;
-            case '-':
-                result = number1 - number2;
-                break;
-            default:
-                break;
+    _makeNextStep(currentIndex) {
+        let newIndex = currentIndex;
+
+        if (currentIndex < this.state.images.length - 1) {
+            newIndex = this.state.currentImageIndex + 1;
+            this.setState({
+                cantGoPrev: true
+            });
         }
-        this.setState({result: result})
+        if (newIndex === this.state.images.length - 1) {
+            this.setState({
+                cantGoNext: false
+            });
+        }
+        return newIndex;
+
     }
 
-    handleNumber1Change(e) {
-        let number1 = +e.currentTarget.value;
-        this.setState({number1: number1})
-        let {number2, operation} = this.state
-        this.showResult(operation, number1, number2)
+    _makePrevStep(currentIndex) {
+        let newIndex = currentIndex;
+        if (newIndex > 0) {
+            newIndex = this.state.currentImageIndex - 1;
+            this.setState({
+                cantGoNext: true
+            });
+            if (newIndex === 0) {
+                this.setState({
+                    cantGoPrev: false
+                });
+            }
+            return newIndex;
+        }
     }
 
-    handleNumber2Change(e) {
-        let number2 = Number(e.currentTarget.value);
-        this.setState({number2: number2})
-        let {number1, operation} = this.state
-        this.showResult(operation, number1, number2)
-    }
+    nextSlideHandler(e) {
+        let currentIndex = this.state.currentImageIndex;
+        let newIndex = currentIndex;
 
-    handleOperationChange(e) {
-        this.setState({operation: e.currentTarget.value})
-        let {number1, number2} = this.state
-        this.showResult(e.currentTarget.value, number1, number2)
+        if (e.currentTarget.dataset.direction === "next") {
+            newIndex = this._makeNextStep(currentIndex);
+
+        } else {
+            newIndex = this._makePrevStep(currentIndex);
+
+        }
+        this.setState({currentImageIndex: newIndex})
     }
 
     render() {
         return (
-            <div className="calculator">
+            <div class="slider1">
                 <div>
-                    <input value={this.state.number1} onChange={this.handleNumber1Change.bind(this)}/>
+                    <button disabled={!this.state.cantGoPrev} data-direction="prev"
+                            onClick={this.nextSlideHandler.bind(this)}>prev
+                    </button>
                 </div>
                 <div>
-                    <select name="" id="" onChange={this.handleOperationChange.bind(this)}>
-                        <option value="+">+</option>
-                        <option value="-">-</option>
-                    </select>
+                    <img class="slider1-img" src={this.state.images[this.state.currentImageIndex]} alt=""/>
+                    {this.state.currentImageIndex}
                 </div>
                 <div>
-                    <input value={this.state.number2} onChange={this.handleNumber2Change.bind(this)}/>
+                    <button disabled={!this.state.cantGoNext} data-direction="next"
+                            onClick={this.nextSlideHandler.bind(this)}>next
+                    </button>
+
                 </div>
-                <div>
-                    <button onClick={this.showResult}>Get Result</button>
-                </div>
-                <div>
-                    Result
-                    : <span>{this.state.number1} {this.state.operation} {this.state.number2} = {this.state.result}</span>
-                </div>
+
             </div>
         );
     }
 }
 
-export default Calculator;
+export default Slider1;
