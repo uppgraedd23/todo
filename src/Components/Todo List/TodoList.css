@@ -1,0 +1,21 @@
+.todolist{
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 30px;
+    border:grey solid 1px;
+}
+
+.todolist .task .delete{
+    float: right;
+    color: red;
+    cursor: pointer;
+    display: none;
+}
+.todolist .task:hover .delete{
+    display: inline-block;
+}
+
+.todolist .task.done{
+    text-decoration: line-through;
+}

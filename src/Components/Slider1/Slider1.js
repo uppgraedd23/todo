@@ -5,14 +5,13 @@ import './Slider1.css'
 class Slider1 extends Component {
 
     constructor(props) {
-        debugger;
         super();
         this.state = {
             images: props.images,
             currentImageIndex: props.index,
             isCycleMode: false,
-            cantGoPrev: props.index >0,
-            cantGoNext: props.index < props.index.length -1
+            canGoPrev: props.index > 0,
+            canGoNext: props.index < props.images.length -1
         }
         this.nextSlideHandler = this.nextSlideHandler.bind(this)
     }
@@ -23,12 +22,12 @@ class Slider1 extends Component {
         if (currentIndex < this.state.images.length - 1) {
             newIndex = this.state.currentImageIndex + 1;
             this.setState({
-                cantGoPrev: true
+                canGoPrev: true
             });
         }
         if (newIndex === this.state.images.length - 1) {
             this.setState({
-                cantGoNext: false
+                canGoNext: false
             });
         }
         return newIndex;
@@ -40,11 +39,11 @@ class Slider1 extends Component {
         if (newIndex > 0) {
             newIndex = this.state.currentImageIndex - 1;
             this.setState({
-                cantGoNext: true
+                canGoNext: true
             });
             if (newIndex === 0) {
                 this.setState({
-                    cantGoPrev: false
+                    canGoPrev: false
                 });
             }
             return newIndex;
@@ -67,18 +66,18 @@ class Slider1 extends Component {
 
     render() {
         return (
-            <div class="slider1">
+            <div className="slider1">
                 <div>
-                    <button disabled={!this.state.cantGoPrev} data-direction="prev"
+                    <button disabled={!this.state.canGoPrev} data-direction="prev"
                             onClick={this.nextSlideHandler.bind(this)}>prev
                     </button>
                 </div>
                 <div>
-                    <img class="slider1-img" src={this.state.images[this.state.currentImageIndex]} alt=""/>
+                    <img className="slider1-img" src={this.state.images[this.state.currentImageIndex]} alt=""/>
                     {this.state.currentImageIndex}
                 </div>
                 <div>
-                    <button disabled={!this.state.cantGoNext} data-direction="next"
+                    <button disabled={!this.state.canGoNext} data-direction="next"
                             onClick={this.nextSlideHandler.bind(this)}>next
                     </button>
 
