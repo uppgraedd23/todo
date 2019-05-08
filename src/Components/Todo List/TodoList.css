@@ -6,6 +6,13 @@
     border:grey solid 1px;
 }
 
+.todolist .task{
+    margin: 2px;
+    padding: 6px;
+}
+.todolist .task:hover{
+    background-color: lightgray;
+}
 .todolist .task .delete{
     float: right;
     color: red;
@@ -18,4 +25,18 @@
 
 .todolist .task.done{
     text-decoration: line-through;
+}
+
+
+
+.todolist .todolist-footer{
+    display: flex;
+    margin-top: 10px;
+}
+.todolist .todolist-footer div {
+    padding: 3px ;
+}
+
+.todolist .todolist-footer .buttons button.active {
+    border: 2px solid black ;
 }

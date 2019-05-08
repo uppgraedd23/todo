@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import './TodoList.css'
 import Task from "./Task";
+import TodoListFooter from "./TodoListFooter";
+import TodoListTaskCreator from "./TodoListTaskCreator";
+import TasksList from "./TasksList";
 
 class TodoList extends Component {
 
-    constructor(props) {
+    constructor() {
         super();
-        this.newIndex = 2;
         this.state = {
             tasks: [
                 {
@@ -23,21 +25,12 @@ class TodoList extends Component {
         }
     }
 
-    createNewTask(e) {
+    createNewTask(task) {
+        this.setState({
+            tasks: [...this.state.tasks, task]
+        });
 
-        if (e.key === 'Enter') {
-            this.setState({
-                tasks: [...this.state.tasks,
-                    {
-                        title: e.currentTarget.value,
-                        isDone: false,
-                        id: this.newIndex
-                    }]
-            });
-            e.currentTarget.value = '';
-            this.newIndex++
 
-        }
     }
 
     deleteTask(taskId) {
@@ -49,20 +42,32 @@ class TodoList extends Component {
         })
     }
 
+    updateTask(task) {
+        const newTasksList = [...this.state.tasks]
+        newTasksList.forEach((t) => {
+            if (t.id === task.id) {
+                t.isDone = task.isDone;
+                return;
+            }
+
+        })
+        this.setState({
+            tasks: newTasksList
+        })
+    }
+
     render() {
         return (
             <div className="todolist">
-                <div className="header">
-                    <input onKeyPress={this.createNewTask.bind(this)}/>
-                </div>
-                <div className="tasks">
-                    {
-                        this.state.tasks.map((task, index) => {
-                            return <Task task={task} deleteCallback={this.deleteTask.bind(this)} key={task.id}/>
-                        })}
-                </div>
-            </div>
+                <TodoListTaskCreator onCreate={this.createNewTask.bind(this)}/>
 
+                <TasksList tasks={this.state.tasks}
+                           onDelete={this.deleteTask.bind(this)}
+                           onUpdate={this.updateTask.bind(this)}/>
+
+                <TodoListFooter/>
+
+            </div>
         );
     }
 }

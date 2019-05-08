@@ -24,11 +24,12 @@ var images2 = [
 ]
 ReactDOM.render(
     <div>
+
         <TodoList/>
         <App />
-        <Calculator/>
-        <Slider1 images = {images1} index ={0}/>
-        <Slider1 images = {images2} index ={1}/>
+        {/*<Calculator/>*/}
+        {/*<Slider1 images = {images1} index ={0}/>*/}
+        {/*<Slider1 images = {images2} index ={1}/>*/}
     </div>
    , document.getElementById('root'));
 
