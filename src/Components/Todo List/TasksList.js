@@ -1,20 +1,8 @@
 import React, {Component} from 'react';
 import './TodoList.css'
-import Task from "./Task";
-import TodoListFooter from "./TodoListFooter";
-import TodoListTaskCreator from "./TodoListTaskCreator";
+import Task from "./Task.js";
 
 class TasksList extends Component {
-
-    constructor(props) {
-        super(props);
-
-    }
-
-
-    deleteTask(taskId) {
-
-    }
 
     render() {
         return (

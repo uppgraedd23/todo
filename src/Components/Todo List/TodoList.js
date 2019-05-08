@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './TodoList.css'
-import Task from "./Task";
+// import Task from "./Task";
 import TodoListFooter from "./TodoListFooter";
 import TodoListTaskCreator from "./TodoListTaskCreator";
 import TasksList from "./TasksList";
@@ -21,11 +21,23 @@ class TodoList extends Component {
                     title: "learn react",
                     isDone: false
                 }
-            ]
+            ],
+            filter: "all"
         }
     }
+    clearCompleted() {
+        this.setState({
+            tasks: this.state.tasks.filter(t => !t.isDone)
+        })
+    }
 
-    createNewTask(task) {
+    changeFilter(filterValue) {
+        this.setState({filter: filterValue})
+    }
+
+
+
+    putTaskToState(task) {
         this.setState({
             tasks: [...this.state.tasks, task]
         });
@@ -57,15 +69,24 @@ class TodoList extends Component {
     }
 
     render() {
+        var {tasks, filter} = this.state
+
+        var filteredTasks = [];
+        if (filter === "all") filteredTasks = tasks;
+        if (filter === "active") filteredTasks = tasks.filter(t => !t.isDone);
+        if (filter === "completed") filteredTasks = tasks.filter(t => t.isDone);
         return (
             <div className="todolist">
-                <TodoListTaskCreator onCreate={this.createNewTask.bind(this)}/>
+                <TodoListTaskCreator onCreate={this.putTaskToState.bind(this)}/>
 
-                <TasksList tasks={this.state.tasks}
+                <TasksList tasks={filteredTasks}
                            onDelete={this.deleteTask.bind(this)}
                            onUpdate={this.updateTask.bind(this)}/>
 
-                <TodoListFooter/>
+                <TodoListFooter tasks={this.state.tasks} filter={this.state.filter}
+                                onFilterChange={this.changeFilter.bind(this)}
+                                onClearCompleted={this.clearCompleted.bind(this)}
+                />
 
             </div>
         );

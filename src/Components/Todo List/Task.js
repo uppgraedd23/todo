@@ -4,8 +4,9 @@ import React, {Component} from 'react';
 class Task extends Component {
 
     constructor(props) {
+        debugger;
 
-        super();
+        super(props);
 
 
         this.patentDeleteCallback = props.deleteCallback
@@ -21,9 +22,11 @@ class Task extends Component {
         //     ...this.state.task,
         //     isDone: !this.state.task.isDone
         // };
+        debugger
         var task ={
-            ...this.props.task}
-        task.isDone = !this.isDone;
+            ...this.props.task
+        };
+        task.isDone = !task.isDone;
         this.patentUpdateCallback(task);
 
     }
@@ -31,9 +34,9 @@ class Task extends Component {
     render() {
         return (
             <div className={this.props.task.isDone ? 'task done' : 'task'}>
-                <input type="checkbox"
+                <input type="checkbox" onChange={()=>{}}
                        checked={this.props.task.isDone}
-                       onClick={this.toggleTaskStatus.bind(this)}/>
+                       onClick={this.toggleTaskStatus.bind(this)} />
                 {this.props.task.title}
                 <span className="delete"
                       onClick={this.deleteTask.bind(this)}>x</span>
