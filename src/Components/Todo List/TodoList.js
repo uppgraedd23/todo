@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import {createStore} from 'redux'
 import './TodoList.css'
 // import Task from "./Task";
 import TodoListFooter from "./TodoListFooter";
 import TodoListTaskCreator from "./TodoListTaskCreator";
 import TasksList from "./TasksList";
 import {getTasks} from "./services";
+import combineReducers from "redux/src/combineReducers";
 
 class TodoList extends Component {
 
@@ -19,6 +21,8 @@ class TodoList extends Component {
             }],
             filter: "all"
         };
+
+
 
 
         const changeFilterAction = {
@@ -37,7 +41,14 @@ class TodoList extends Component {
         console.log(todolistState);
 
 
-        function todolistReducer(oldState, action) {
+        function todolistReducer(oldState ={
+            tasks: [{
+                id: 1,
+                title: 'learn css',
+                isDone: false
+            }],
+            filter: "all"
+        }, action) {
             switch (action.type) {
                 case "CHANGE_FILTER":
                     return {
@@ -59,6 +70,7 @@ class TodoList extends Component {
                     tasks:[...oldState.tasks,
                         delete {...oldState.tasks.id}]
                 }
+                default: return oldState
 
             }
         }
@@ -66,6 +78,10 @@ class TodoList extends Component {
         todolistState = todolistReducer(todolistState, changeFilterAction)
         todolistState = todolistReducer(todolistState, createNewTaskAction)
         todolistState = todolistReducer(todolistState, deleteTaskAction)
+         var reducers = combineReducers({todolistReducer});
+        var store = createStore(reducers);
+        var state = store.getState()
+        console.log(state);
 
         console.log(todolistState);
 

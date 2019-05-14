@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="43036214-e917-4cb0-a939-8ec8838bbeaa" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Todo List/Task.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Todo List/Task.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Todo List/TodoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Todo List/TodoList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Todo List/TodoListFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Todo List/TodoListFooter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Todo List/TodoListTaskCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Todo List/TodoListTaskCreator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Todo List/services.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Todo List/services.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -87,11 +84,11 @@
       <file leaf-file-name="TodoList.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Components/Todo List/TodoList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1395">
-              <caret line="49" column="47" lean-forward="true" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
+            <state relative-caret-position="270">
+              <caret line="46" column="35" lean-forward="true" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-                <element signature="e#94#140#0" expanded="true" />
+                <element signature="e#128#174#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -247,12 +244,12 @@
       <workItem from="1557338918498" duration="6593000" />
       <workItem from="1557388371896" duration="4785000" />
       <workItem from="1557559132973" duration="8876000" />
-      <workItem from="1557828310521" duration="5865000" />
+      <workItem from="1557828310521" duration="8347000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79897000" />
+    <option name="totallyTimeSpent" value="82379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -344,7 +341,7 @@
           <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#94#140#0" expanded="true" />
+            <element signature="e#128#174#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -390,7 +387,7 @@
           <caret line="49" column="23" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#94#140#0" expanded="true" />
+            <element signature="e#128#174#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -415,7 +412,7 @@
           <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#94#140#0" expanded="true" />
+            <element signature="e#128#174#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -669,11 +666,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/Todo List/TodoList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1395">
-          <caret line="49" column="47" lean-forward="true" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
+        <state relative-caret-position="270">
+          <caret line="46" column="35" lean-forward="true" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#94#140#0" expanded="true" />
+            <element signature="e#128#174#0" expanded="true" />
           </folding>
         </state>
       </provider>
