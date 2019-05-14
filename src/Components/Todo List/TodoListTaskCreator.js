@@ -1,38 +1,43 @@
 import React, {Component} from 'react';
+import {createTask} from "./services";
 
 
 class TodoListTaskCreator extends Component {
 
-    constructor(props) {
-        super(props);
-        this.newIndex = 2;
 
-    }
 
     createNewTask(e) {
 
         if (e.key === 'Enter') {
-            const newTask = {
-                title: e.currentTarget.value,
-                isDone: false,
-                id: this.newIndex
-            };
-            this.props.onCreate(newTask)
-            e.currentTarget.value = '';
 
-            this.newIndex++
+            // const data = new URLSearchParams();
+            // data.append('widgetId', 15136)
+            // data.append('title', e.currentTarget.value)
+            // var newTaskInput = e.currentTarget
+
+            const newTaskInput = e.currentTarget;
+
+            createTask(newTaskInput.value, 15136)
+                .then(data => {
+                    const newTask = {
+                        id: data.task.id,
+                        title: data.task.title,
+                        isDone: data.task.isDone
+                    };
+                    this.props.onCreate(newTask)
+                    newTaskInput.value = '';
+                })
 
         }
     }
 
 
-
     render() {
         return (
 
-                <div className="header">
-                    <input onKeyPress={this.createNewTask.bind(this)}/>
-                </div>
+            <div className="header">
+                <input onKeyPress={this.createNewTask.bind(this)}/>
+            </div>
 
 
         );

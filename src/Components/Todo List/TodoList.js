@@ -4,27 +4,89 @@ import './TodoList.css'
 import TodoListFooter from "./TodoListFooter";
 import TodoListTaskCreator from "./TodoListTaskCreator";
 import TasksList from "./TasksList";
+import {getTasks} from "./services";
 
 class TodoList extends Component {
 
     constructor() {
         super();
-        this.state = {
-            tasks: [
-                {
-                    id: 0,
-                    title: "learn js",
-                    isDone: false
-                },
-                {
-                    id: 1,
-                    title: "learn react",
-                    isDone: false
-                }
-            ],
+
+        var todolistState = {
+            tasks: [{
+                id: 1,
+                title: 'learn css',
+                isDone: false
+            }],
             filter: "all"
+        };
+
+
+        const changeFilterAction = {
+            type: "CHANGE_FILTER"
+        };
+
+        const createNewTaskAction = {
+            type: "CREATE_NEW_TASK",
+            id:2,
+            title:"learn react",
+            isDone: true
+        };const deleteTaskAction = {
+            type: "DELETE_TASK",
+            id:2
+        };
+        console.log(todolistState);
+
+
+        function todolistReducer(oldState, action) {
+            switch (action.type) {
+                case "CHANGE_FILTER":
+                    return {
+                        ...todolistState,
+                        filter: "completed"
+                    };
+                case"CREATE_NEW_TASK":
+                return{
+                    ...oldState,
+                    tasks:[...oldState.tasks, {
+                        id: action.id,
+                        title: action.title,
+                        isDone:action.isDone
+                    }]
+                }
+                case"DELETE_TASK":
+                return{
+                    ...oldState,
+                    tasks:[...oldState.tasks,
+                        delete {...oldState.tasks.id}]
+                }
+
+            }
         }
+
+        todolistState = todolistReducer(todolistState, changeFilterAction)
+        todolistState = todolistReducer(todolistState, createNewTaskAction)
+        todolistState = todolistReducer(todolistState, deleteTaskAction)
+
+        console.log(todolistState);
+
+
+        this.state = {
+            tasks: [],
+            filter: "all"
+        };
+        getTasks(15136).then(tasksFromServer => {
+            var tasks = tasksFromServer.map(itemFromServer => {
+                return {
+                    id: itemFromServer.id,
+                    title: itemFromServer.title,
+                    isDone: itemFromServer.done
+                };
+
+            });
+            this.setState({tasks: tasks})
+        })
     }
+
     clearCompleted() {
         this.setState({
             tasks: this.state.tasks.filter(t => !t.isDone)
@@ -34,7 +96,6 @@ class TodoList extends Component {
     changeFilter(filterValue) {
         this.setState({filter: filterValue})
     }
-
 
 
     putTaskToState(task) {
