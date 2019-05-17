@@ -10,8 +10,8 @@ class TasksList extends Component {
                     {
                         this.props.tasks.map((task, index) => {
                             return <Task task={task}
-                                         deleteCallback={this.props.onDelete}
-                                         updateCallback = {this.props.onUpdate}
+                                         store = {this.props.store}
+
                                          key={task.id}/>
                         })}
                 </div>

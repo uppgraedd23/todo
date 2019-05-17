@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {updateTask} from "./services";
+import {deleteTask, updateTask} from "./services";
+import {deleteTaskCreator, updateTaskCreator} from "./redux/todolist-actions";
 
 
 class Task extends Component {
@@ -13,12 +14,13 @@ class Task extends Component {
         }
 
 
-        this.patentDeleteCallback = props.deleteCallback
         this.patentUpdateCallback = props.updateCallback
     }
 
     deleteTask(e) {
-        this.patentDeleteCallback(this.props.task.id);
+        deleteTask(15136, this.props.task.id).then((data) => {
+            this.props.store.dispatch(deleteTaskCreator(this.props.task.id))
+        })
     }
 
     toggleTaskStatus(e) {
@@ -28,8 +30,12 @@ class Task extends Component {
         };
         task.isDone = !task.isDone;
 
-        updateTask(task.title, task.isDone, 15136).then((data) => {
-            this.patentUpdateCallback(task);
+        updateTask(15136, task.id, task.title, task.isDone,)
+            .then((data) => {
+                this.setState({
+                    editMode:false
+                })
+            this.props.store.dispatch(updateTaskCreator(task));
 
         })
 
@@ -48,19 +54,18 @@ class Task extends Component {
             ...this.props.task
         };
         task.title = newTitle;
-        updateTask(task.title, task.id, null, newTitle)
+        updateTask(15136, task.id, task.title, null)
             .then((data) => {
                 this.setState({
-                    editMode:false
+                    editMode: false
                 })
-            this.patentUpdateCallback(task);
 
-        });
+            });
     }
 
-    changeTitle(e){
+    changeTitle(e) {
         this.setState({
-            title:e.currentTarget.value
+            title: e.currentTarget.value
         })
     }
 

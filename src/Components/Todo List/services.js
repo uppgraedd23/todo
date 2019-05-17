@@ -26,15 +26,22 @@ export function createTask (title, widgetId){
     return  requestData(apiUrl, 'POST', data)
 
 }
-
-export function updateTask (title, taskId, isDone, widgetId){
+export function deleteTask (widgetId, taskId){
     const data = new URLSearchParams();
     data.append('taskId', taskId)
     data.append('widgetId', widgetId)
+
+    return  requestData(apiUrl, 'DELETE', data)
+
+}
+export function updateTask ( widgetId, taskId , title,isDone){
+    const data = new URLSearchParams();
+    data.append('widgetId', widgetId)
+    data.append('taskId', taskId)
     data.append('title', title)
     data.append('done', isDone)
 
-    return  requestData(apiUrl, 'POST', data)
+    return  requestData(apiUrl, 'PUT', data)
 
 }
 
